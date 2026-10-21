@@ -1,0 +1,15 @@
+/* 第 2 章"一句话"：胶囊输入框内的 DOM（模型标签 + 打字文本） */
+/* fixed 定位：与粒子同一视口坐标，过渡期间不随吸顶容器滚动 */
+.pr-ui{position:fixed;display:flex;align-items:center;gap:14px;opacity:0;visibility:hidden;pointer-events:none;will-change:opacity}
+.pr-ui .chip.pr-chip{position:relative;flex:none;height:38px;padding:0 10px 0 10px;gap:7px;font-size:14px;
+  background:rgba(22,28,46,.72);border-color:rgba(255,255,255,.1)}
+.pr-chip .pr-chev{width:13px;height:13px;margin-left:-1px;color:var(--ink-3)}
+.pr-line{flex:1;min-width:0;display:flex;align-items:center;font-size:19px;letter-spacing:.01em;color:var(--ink);
+  white-space:nowrap;overflow:hidden;text-shadow:0 0 18px rgba(127,232,255,.18)}
+.pr-text{overflow:hidden;text-overflow:clip}
+.pr-caret{flex:none;width:2px;height:1.15em;margin-left:3px;border-radius:1px;background:var(--c1);box-shadow:0 0 8px var(--c1);animation:pr-blink 1s steps(1) infinite}
+@keyframes pr-blink{50%{opacity:0}}
+.pr-ui.is-small{gap:8px}
+.pr-ui.is-small .chip.pr-chip{height:30px;font-size:12px;padding:0 8px}
+.pr-ui.is-small .chip.pr-chip img{width:14px;height:14px}
+.pr-ui.is-small .pr-line{font-size:12.5px;white-space:normal;line-height:1.45}

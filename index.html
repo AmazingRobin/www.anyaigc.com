@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#04060b">
+<meta name="color-scheme" content="dark">
+<title>AnyAIGC · AI 聚合平台 | 一个账号用上 GPT、Claude、Gemini、DeepSeek、可灵、即梦</title>
+<meta name="description" content="AnyAIGC 是一站式 AI 聚合平台：对话、图像、视频、声音与智能体，主流大模型统一接入，一个账号全部用上，并提供开发者 API。">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://www.anyaigc.com/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AnyAIGC">
+<meta property="og:url" content="https://www.anyaigc.com/">
+<meta property="og:title" content="AnyAIGC · 一个入口，调度全球顶尖 AI">
+<meta property="og:description" content="对话、图像、视频、声音与智能体，主流大模型统一接入，一个账号全部用上。">
+<meta property="og:image" content="https://www.anyaigc.com/assets/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- 结构化数据：由 scripts/build-seo.mjs 生成，请勿手改 -->
+<!--SEO:JSONLD-->
+<!--/SEO:JSONLD-->
+
+<link rel="stylesheet" href="css/main.css">
+<!-- 各场景叠加层样式 -->
+<link rel="stylesheet" href="css/prompt.css">
+<link rel="stylesheet" href="css/compare.css">
+<link rel="stylesheet" href="css/image.css">
+<link rel="stylesheet" href="css/video.css">
+<link rel="stylesheet" href="css/agent.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<!-- 全屏粒子画布：所有章节共用一团粒子，滚动时在各场景之间形变 -->
+<canvas id="stage" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+
+<header class="top">
+  <a class="brand" href="#home" aria-label="AnyAIGC，回到顶部">
+    <!-- <img class="brand-logo" src="assets/logo.png" alt="" width="32" height="32"> -->
+    <b>AnyAIGC</b>
+  </a>
+  <nav class="nav" aria-label="主导航">
+    <a href="#models">模型</a>
+    <a href="#create">创作</a>
+    <a href="#agent">智能体</a>
+    <a href="#gallery">灵感</a>
+    <a href="https://anyaigc.ai/pricing" target="_blank">模型广场</a>
+    <a href="https://docs.anyaigc.ai/" target="_blank">开发者 API</a>
+    <a href="https://vip.anyaigc.ai/" target="_blank">AI会员</a>
+  </nav>
+  <div class="top-actions">
+    <a class="btn is-ghost is-sm" href="https://anyaigc.ai/login" target="_blank">登录</a>
+    <a class="btn is-primary is-sm" href="https://anyaigc.ai/customersupport" target="_blank">企业合作<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</header>
+
+<!-- 右侧章节导航：由 js/main.js 根据各章 data-label 生成 -->
+<nav class="rail" id="rail" aria-label="章节导航"></nav>
+<a class="skip-end" href="#start">跳到结尾<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+
+<!--
+  章节结构（每章一个 <section class="ch">）：
+    .ch-pin     吸顶容器，章节滚动期间固定在视口
+    .ch-copy    文案（标题、说明）
+    .ch-visual  粒子场景占据的区域；场景按它的位置和尺寸布局粒子
+    .ch-fx      场景的 DOM 叠加层（模型标签、计数器等），由场景脚本填充
+  data-len 为本章滚动长度（视口高度的倍数），数值越大停留越久
+-->
+<main id="main">
+
+  <section class="ch ch-hero" id="home" data-label="首页" data-scene="home" data-len="1.6">
+    <div class="ch-pin">
+      <div class="ch-copy">
+        <p class="eyebrow"><i class="dot"></i>AI 聚合平台 · 对话 / 图像 / 视频 / 声音 / 智能体</p>
+        <h1 class="display"><span>一个入口</span><span class="grad">调度全球顶尖 AI</span></h1>
+        <p class="lead">GPT、Claude、Gemini、DeepSeek、可灵、即梦……<br>不用在十几个网站之间来回切换，一个账号全部用上。</p>
+        <div class="actions">
+          <a class="btn is-primary" href="https://anyaigc.ai/pricing" target="_blank">300+模型<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn is-ghost" href="#models">看看它能做什么</a>
+        </div>
+      </div>
+      <div class="ch-visual" aria-hidden="true"></div>
+      <div class="ch-fx" aria-hidden="true"></div>
+      <a class="scroll-hint" href="#models"><i></i>向下滚动</a>
+    </div>
+  </section>
+
+  <section class="ch ch-side" id="models" data-label="万模归一" data-scene="models" data-len="2">
+    <div class="ch-pin">
+      <div class="ch-copy">
+        <p class="kicker"><b>01</b>万模归一</p>
+        <h2 class="title">主流模型，<br>汇成一条轨道</h2>
+        <p class="lead">文本、图像、视频、音频模型统一接入。换模型就像换一支笔，不用换网站，也不用换账号。</p>
+        <ul class="tags"><li>对话</li><li>图像</li><li>视频</li><li>声音</li><li>智能体</li></ul>
+      </div>
+      <div class="ch-visual" aria-hidden="true"></div>
+      <div class="ch-fx" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="ch ch-center" id="create" data-label="一句话" data-scene="prompt" data-len="2">
+    <div class="ch-pin">
+      <div class="ch-copy">
+        <p class="kicker"><b>02</b>一句话开始</p>
+        <h2 class="title">说出你想要的</h2>
+        <p class="lead">写下一句话，挑一个模型，剩下的交给 AI。</p>
+      </div>
+      <div class="ch-visual" aria-hidden="true"></div>
+      <div class="ch-fx" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="ch ch-center" id="compare" data-label="多模型" data-scene="compare" data-len="2.4">
+    <div class="ch-pin">
+      <div class="ch-copy">
+        <p class="kicker"><b>03</b>多模型对比</p>
+        <h2 class="title">同一个问题，三个模型同时作答</h2>
+        <p class="lead">谁更快、谁更好，一屏看清。</p>
+      </div>
+      <div class="ch-visual" aria-hidden="true"></div>
+      <div class="ch-fx" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="ch ch-side" id="image" data-label="图像" data-scene="image" data-len="2">
+    <div class="ch-pin">
+      <div class="ch-copy">
+        <p class="kicker"><b>04</b>图像生成</p>
+        <h2 class="title">从噪声，<br>到作品</h2>
+        <p class="lead">每一张 AI 图像，都是从一片随机噪声里一步步"想"出来的。继续往下滚，看它成形。</p>
+      </div>
+      <div class="ch-visual" aria-hidden="true"></div>
+      <div class="ch-fx" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="ch ch-side" id="video" data-label="视频" data-scene="video" data-len="2">
+    <div class="ch-pin">
+      <div class="ch-copy">
+        <p class="kicker"><b>05</b>视频生成</p>
+        <h2 class="title">让画面<br>动起来</h2>
+        <p class="lead">一张图、一句话，生成带运镜的视频：雨会落下，霓虹会闪烁。</p>
+      </div>
+      <div class="ch-visual" aria-hidden="true"></div>
+      <div class="ch-fx" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="ch ch-top" id="audio" data-label="声音" data-scene="audio" data-len="2">
+    <div class="ch-pin">
+      <div class="ch-copy">
+        <p class="kicker"><b>06</b>声音</p>
+        <h2 class="title">声音，也能被创造</h2>
+        <p class="lead">配音、音乐、音色克隆，为作品配上声音。</p>
+        <ul class="tags is-play"><li>配音</li><li>音乐</li><li>音色克隆</li></ul>
+      </div>
+      <div class="ch-visual" aria-hidden="true"></div>
+      <div class="ch-fx" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="ch ch-side" id="agent" data-label="智能体" data-scene="agent" data-len="2.4">
+    <div class="ch-pin">
+      <div class="ch-copy">
+        <p class="kicker"><b>07</b>智能体</p>
+        <h2 class="title">交给智能体，<br>一条龙完成</h2>
+        <p class="lead">从剧本、分镜到成片，多个模型自动接力。漫剧、短视频、营销素材，一句话发起。</p>
+      </div>
+      <div class="ch-visual" aria-hidden="true"></div>
+      <div class="ch-fx" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="ch ch-center" id="gallery" data-label="灵感" data-scene="gallery" data-len="3">
+    <div class="ch-pin">
+      <div class="ch-copy">
+        <p class="kicker"><b>08</b>灵感</p>
+        <h2 class="title">看看大家在创作什么</h2>
+        <p class="lead">穿过这条由作品组成的隧道。</p>
+      </div>
+      <div class="ch-visual" aria-hidden="true"></div>
+      <div class="ch-fx" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="ch ch-finale" id="start" data-label="开始" data-scene="finale" data-len="1.4">
+    <div class="ch-pin">
+      <div class="ch-visual" aria-hidden="true"></div>
+      <div class="ch-fx" aria-hidden="true"></div>
+      <div class="ch-copy">
+        <h2 class="title">点亮你的第一件作品</h2>
+        <p class="lead">对话、图像、视频、声音与智能体，从一句话开始。</p>
+        <div class="actions">
+          <a class="btn is-primary" href="https://anyaigc.ai/pricing" target="_blank">立即开始<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn is-ghost" href="https://anyaigc.ai/customersupport" target="_blank">联系官方人员</a>
+        </div>
+        <p class="foot">© <span id="year"></span> AnyAIGC</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<noscript><style>.ch-copy{opacity:1 !important;transform:none !important}</style></noscript>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

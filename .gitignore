@@ -1,0 +1,10 @@
+# 本地工具与系统文件
+.spec-workflow/
+.playwright-mcp/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# 依赖
+node_modules/

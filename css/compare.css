@@ -1,0 +1,11 @@
+/* 第 3 章"多模型"：卡头（模型图标 + 名称 + 完成状态），fixed 定位，由场景每帧写 transform */
+.cmp-head{position:fixed;left:0;top:0;display:flex;align-items:center;gap:8px;white-space:nowrap;transform-origin:0 50%;
+  opacity:0;visibility:hidden;pointer-events:none;will-change:transform,opacity}
+.cmp-head img{width:20px;height:20px;flex:none;border-radius:50%}
+.cmp-head b{font-size:15px;font-weight:700;color:var(--ink)}
+.cmp-status{margin-left:6px;font-size:11px;letter-spacing:.06em;color:var(--c1);opacity:0;transform:translateX(-4px);transition:opacity .4s,transform .4s var(--ease)}
+.cmp-status.is-on{opacity:.85;transform:none}
+@media (max-width:760px){
+  .cmp-head b{font-size:13px}
+  .cmp-head img{width:16px;height:16px}
+}

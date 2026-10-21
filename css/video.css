@@ -1,0 +1,23 @@
+/* 第 5 章 · 视频生成叠加层（由 js/scenes/video.js 创建，位置由脚本设置） */
+.vid-fx{position:absolute;left:0;top:0;pointer-events:none;opacity:0;font-family:var(--mono);color:var(--ink-2)}
+.vid-fx__head{position:absolute;left:4px;right:4px;top:0;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  font-size:11px;letter-spacing:.16em;white-space:nowrap}
+.vid-fx__rec{display:flex;align-items:center;gap:8px;color:var(--ink)}
+.vid-fx__dot{width:7px;height:7px;border-radius:50%;background:#ff4a5a;box-shadow:0 0 8px #ff4a5a;animation:vid-blink 1s steps(2,start) infinite}
+.vid-fx__tc{font-variant-numeric:tabular-nums;letter-spacing:.1em}
+.vid-fx__meta{color:var(--ink-3);letter-spacing:.08em;overflow:hidden;text-overflow:ellipsis}
+.vid-fx__frame{position:absolute;left:-14px;right:-14px;top:calc(var(--vid-top,44px) - 12px);height:calc(var(--vid-h,0px) + 24px)}
+.vid-fx__c{position:absolute;width:20px;height:20px;border:0 solid rgba(255,255,255,.85)}
+.vid-fx__c--tl{left:0;top:0;border-left-width:2px;border-top-width:2px}
+.vid-fx__c--tr{right:0;top:0;border-right-width:2px;border-top-width:2px}
+.vid-fx__c--bl{left:0;bottom:0;border-left-width:2px;border-bottom-width:2px}
+.vid-fx__c--br{right:0;bottom:0;border-right-width:2px;border-bottom-width:2px}
+.vid-fx__track{position:absolute;left:0;right:0;top:calc(var(--vid-top,44px) + var(--vid-h,0px) + 22px);height:2px;background:rgba(255,255,255,.12);overflow:hidden;border-radius:2px}
+.vid-fx__track i{position:absolute;inset:0;transform-origin:0 50%;transform:scaleX(0);background:rgba(255,255,255,.85)}
+@keyframes vid-blink{to{opacity:.15}}
+@media (max-width:760px){
+  .vid-fx__head{font-size:10px;letter-spacing:.06em}
+  .vid-fx__frame{left:-8px;right:-8px}
+  .vid-fx__c{width:14px;height:14px}
+}
+@media (prefers-reduced-motion:reduce){.vid-fx__dot{animation:none}}

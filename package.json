@@ -1,0 +1,13 @@
+{
+  "name": "www.anyaigc.com",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "seo": "node scripts/build-seo.mjs",
+    "og": "node scripts/og-cover.mjs",
+    "dev": "python -m http.server 5180"
+  },
+  "devDependencies": {
+    "playwright": "1.64.1"
+  }
+}
